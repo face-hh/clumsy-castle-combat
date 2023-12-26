@@ -217,7 +217,7 @@ transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, -17)
 script = ExtResource("9_mpva0")
 
 [node name="HealthBar3D" parent="Towers/king_red" instance=ExtResource("6_sx7rr")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 14, 0.5)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 14, 2.12602)
 
 [node name="Area3D" type="Area3D" parent="Towers/king_red"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1463, 0, 0)
@@ -369,7 +369,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 15)
 [node name="king_blue" type="Marker3D" parent="Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="SpawnedCards" type="Node3D" parent="."]
 
 [connection signal="body_entered" from="Towers/princess_blue_1/Area3D" to="." method="_on_tower_body_entered_princess_blue_1"]
 [connection signal="body_entered" from="Towers/princess_blue_2/Area3D" to="." method="_on_tower_body_entered_princess_blue_2"]

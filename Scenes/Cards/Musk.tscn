@@ -23,6 +23,7 @@ shape = SubResource("CapsuleShape3D_arebl")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="HealthBar3D" parent="." instance=ExtResource("2_gbtg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -30,6 +31,7 @@ shape = SubResource("CapsuleShape3D_arebl")
 
 [node name="blue" parent="Models" instance=ExtResource("3_nkorc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, 0)
+visible = false
 
 [node name="red" parent="Models" instance=ExtResource("3_nkorc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, 0)

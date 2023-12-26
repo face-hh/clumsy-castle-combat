@@ -10,7 +10,7 @@ var c2: Color = Color.hex(0x0175E6FF)
 
 func update_colors():
 	texture = viewport.get_texture()
-	
+
 	#print("Applying color " + side + " for name " + get_parent().name + " color: " + str(c1.to_html()) + " c2: " + str(c2))
 	if side == "red":
 		modulate = c1

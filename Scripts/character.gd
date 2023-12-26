@@ -20,18 +20,19 @@ var deploy_time: float
 var node: Node3D
 var anim: AnimationPlayer
 
+var stop_moving = false
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
 func _ready():
-	get_parent().connect("interaction_finished", t)
+	get_parent().get_parent().connect("interaction_finished", t)
 	$".".name = intern
 	$HealthBar3D.side = side
 	$HealthBar3D.update_colors()
-	
-	if "Knight" in name or "Musk" in name:
+
+	if "Knight" in name or "Musk" in name or "Log" in name:
 		node = $Models.get_node(side)
 		anim = node.get_node("AnimationPlayer")
-		
+
 		node.visible = true
 		anim.play("walk")
 
@@ -39,8 +40,10 @@ func _ready():
 var closestMarkerPosition: Vector3 # Variable to store the relative position of the closest marker
 
 func _process(delta):
+	if stop_moving:
+		return
 	var direction = Vector3()
-	
+
 	var closest_distance: float = 9999
 	var closest_marker: Node = null
 
@@ -53,12 +56,12 @@ func _process(delta):
 
 	if closest_marker:
 		nav.target_position = closest_marker.global_position
-	
+
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
-	
+
 	velocity = velocity.lerp(direction * speed, accel * delta)
-	
+
 	look_at(nav.target_position, Vector3.UP)
 	rotation.y = rotation.y - deg_to_rad(190)
 	rotation.z = 0
@@ -74,14 +77,18 @@ func take_damage(damage):
 
 func attack():
 	anim.stop()
+	stop_moving = true
 	anim.play("attack", -1, hitspeed)
 
 func t(body):
+	stop_moving = false
 	body.anim.play("walk")
 
-func ranged_troop_shoot(type):
-	print(type)
-	pass
+func ranged_troop_shoot(body):
+	var target = body.get_parent().get_parent()
+
+	if ("princess" in target.name or "king" in target.name) and !(side in target.name):
+		get_parent().get_parent().start_card_shoot(self, target)
 
 func _on_range_body_entered_MUSK(body):
-	ranged_troop_shoot("Musk")
+	ranged_troop_shoot(body)

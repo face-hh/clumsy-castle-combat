@@ -49,13 +49,13 @@ func _process(delta) -> void:
 	for tower in active_towers:
 		var node = tower[0]
 		var target = tower[1]
-		
+
 		if node.timer.get_signal_connection_list("timeout").size() <= 0:
 			node.timer.connect("timeout", tower_shoot.bind(node, target))
 			node.timer.start()
-			
+
 			var index = active_towers.find(tower)
-			
+
 			if index != -1:
 				active_towers.remove_at(index)
 
@@ -64,20 +64,20 @@ func tower_shoot(node, target):
 	if !is_instance_valid(tower_troop) or !is_instance_valid(target):
 		return
 	var anim: AnimationPlayer = tower_troop.get_node("AnimationPlayer")
-	
+
 	if anim.is_playing():
 		return
-	
+
 	anim.play("KeyAction")
-	
+
 	var blt = bullet.instantiate()
-	
+
 	add_child(blt)
-	
+
 	blt.damage = node.damage
 	blt.global_position = Vector3(node.global_position.x, 4.185, node.global_position.z)
 	blt.target = target
-	
+
 	tower_troop.look_at(target.global_position, Vector3.UP)
 	tower_troop.rotation.y = tower_troop.rotation.y - deg_to_rad(95)
 	tower_troop.rotation.z = 0
@@ -91,15 +91,14 @@ func start_shoot(target, node):
 		return
 	if ("red" in target.name and "red" in node.name) or ("blue" in target.name and "blue" in node.name) or not ("enemy" in target.name):
 		return
-	
+
 	var connections = node.timer.get_signal_connection_list("timeout").size()
 	if connections > 0:
 		active_towers.append([node, target])
 		return
-	
+
 	node.timer.connect("timeout", tower_shoot.bind(node, target))
 	node.timer.start()
-
 
 func stop_shoot(target, node):
 	# prevent crashing when closed
@@ -107,31 +106,21 @@ func stop_shoot(target, node):
 		return
 	if !is_instance_valid(node.timer):
 		return
-	
+
 	if ("red" in target.name and "red" in node.name) or ("blue" in target.name and "blue" in node.name) or not ("enemy" in target.name):
 		return
-	
+
 	troop(node).rotation.y = deg_to_rad(90)
-	
+
 	node.timer.disconnect("timeout", tower_shoot)
 	node.timer.stop()
 
-func basic_checks():
-	if not multiplayer.is_server():
-		return true
-	
-	if peers.find(multiplayer.get_remote_sender_id()) == -1:
-		print('someone being naughty! ', multiplayer.get_remote_sender_id(), ' tried to update ', name)
-		return true
-	
-	return false
-
-func button_pressed(button):	
+func button_pressed(button):
 	var card = Data.cards.filter(func(el):
 		return el.name == button.text)[0]
-	
+
 	var card_scene = card.scene.instantiate();
-	
+
 	card_scene.side = "blue" # CHANGE LATER (when adding multiplayer)
 	card_scene.name = "blue_enemy_" + card_scene.name
 	card_scene.intern = "blue_enemy_" + card_scene.name
@@ -145,8 +134,8 @@ func button_pressed(button):
 	card_scene.position = Vector3(7, 1, 6)
 	card_scene.timer.wait_time = card.hitspeed
 	card_scene.markers = $Markers
-	
-	get_node("Node3D").add_child(card_scene)
+
+	get_node("SpawnedCards").add_child(card_scene)
 
 func start_card_shoot(body, target):
 	if "enemy" in body.name:
@@ -158,11 +147,11 @@ func card_deal_damage(body, target):
 	if !is_instance_valid(target):
 		interaction_finished.emit(body)
 		return
-	
+
 	target.health -= body.damage
 	target.healthbar.update_value((target.health / target.total_health) * 100)
 	body.attack() # plays anim
-	
+
 	if target.health <= 0:
 		interaction_finished.emit(body)
 		#print('emitted')
