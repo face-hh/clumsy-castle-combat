@@ -1,0 +1,395 @@
+[gd_scene load_steps=19 format=3 uid="uid://c8wk0e30jn56"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_mehdx"]
+[ext_resource type="PackedScene" uid="uid://yuyf8wu8rjtf" path="res://Models/bridge.glb" id="2_cmccf"]
+[ext_resource type="PackedScene" uid="uid://07uqvtqlqdnj" path="res://Scenes/bullet.tscn" id="2_v5ih7"]
+[ext_resource type="PackedScene" uid="uid://bbqn7ajgj674x" path="res://Models/tower_blue.glb" id="4_t8k56"]
+[ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="6_sx7rr"]
+[ext_resource type="PackedScene" uid="uid://dtvttuyo3hovo" path="res://Models/cannon_blue.glb" id="7_gqj83"]
+[ext_resource type="PackedScene" uid="uid://bcsevl85g0lj7" path="res://Models/cannon_red.glb" id="8_s601l"]
+[ext_resource type="PackedScene" uid="uid://bomkcq5c67coa" path="res://Models/tower_red.glb" id="9_3s2x7"]
+[ext_resource type="Script" path="res://Scripts/tower.gd" id="9_mpva0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpu6f"]
+albedo_color = Color(0.352763, 0.552752, 1, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3xu0m"]
+vertices = PackedVector3Array(-9.75, 0.4, 9.24425, -9.75, 0.4, 18.4942, -9.53674e-07, 0.4, 18.4942, -9.53674e-07, 0.4, 18.4942, 9.75, 0.4, 18.4942, 9.75, 0.4, 9.24425, 9.75, 0.4, -9.25575, 9.75, 0.4, -18.5058, -9.53674e-07, 0.4, -18.5058, -9.53674e-07, 0.4, -18.5058, -9.75, 0.4, -18.5058, -9.75, 0.4, -9.25575, -9.75, 0.4, 9.24425, -9.53674e-07, 0.4, 18.4942, 9.75, 0.4, 9.24425, 9.75, 0.4, -0.00575066, -9.75, 0.4, -0.00575066, 9.75, 0.4, -9.25575, -9.53674e-07, 0.4, -18.5058, -9.75, 0.4, -9.25575, -9.75, 0.4, -0.00575066, 9.75, 0.4, -0.00575066)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(12, 16, 13), PackedInt32Array(13, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(17, 21, 18), PackedInt32Array(18, 21, 19), PackedInt32Array(19, 21, 20)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1fxm"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf2tr"]
+albedo_color = Color(0.352763, 0.552752, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2h1g"]
+size = Vector3(8, 15.285, 10)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pljf3"]
+gravity = Vector3(0, 96.655, 0)
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.05
+scale_max = 1.3
+anim_speed_max = 2.13
+
+[sub_resource type="BoxMesh" id="BoxMesh_rrnea"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buf4o"]
+size = Vector3(9.67, 1, 19.86)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33cnk"]
+size = Vector3(10.79, 1, 9.94)
+
+[node name="GAME" type="Node3D" node_paths=PackedStringArray("PRINCESS_RED_1", "PRINCESS_RED_2", "KING_RED", "PRINCESS_BLUE_1", "PRINCESS_BLUE_2", "KING_BLUE", "T_PRINCESS_RED_1", "T_PRINCESS_RED_2", "T_KING_RED", "T_PRINCESS_BLUE_1", "T_PRINCESS_BLUE_2", "T_KING_BLUE", "Button1", "Button2", "Button3", "Button4")]
+script = ExtResource("1_mehdx")
+PRINCESS_RED_1 = NodePath("Troops/princess_red_1")
+PRINCESS_RED_2 = NodePath("Troops/princess_red_2")
+KING_RED = NodePath("Troops/king_red")
+PRINCESS_BLUE_1 = NodePath("Troops/princess_blue_1")
+PRINCESS_BLUE_2 = NodePath("Troops/princess_blue_2")
+KING_BLUE = NodePath("Troops/king_blue")
+T_PRINCESS_RED_1 = NodePath("Towers/princess_red_1")
+T_PRINCESS_RED_2 = NodePath("Towers/princess_red_2")
+T_KING_RED = NodePath("Towers/king_red")
+T_PRINCESS_BLUE_1 = NodePath("Towers/princess_blue_1")
+T_PRINCESS_BLUE_2 = NodePath("Towers/princess_blue_2")
+T_KING_BLUE = NodePath("Towers/king_blue")
+bullet = ExtResource("2_v5ih7")
+Button1 = NodePath("CanvasLayer/Control/Button")
+Button2 = NodePath("CanvasLayer/Control/Button2")
+Button3 = NodePath("CanvasLayer/Control/Button3")
+Button4 = NodePath("CanvasLayer/Control/Button4")
+
+[node name="Grass" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.08, 0)
+
+[node name="Bridge" type="Node3D" parent="."]
+
+[node name="bridge" parent="Bridge" instance=ExtResource("2_cmccf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, 2)
+
+[node name="bridge2" parent="Bridge" instance=ExtResource("2_cmccf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -1, 2)
+
+[node name="NetworkedNodes" type="Node3D" parent="."]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1.2, -0.2, -1, 0.1)
+size = Vector3(28.78, 1, 66.215)
+material = SubResource("StandardMaterial3D_tpu6f")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 1.1)
+navigation_mesh = SubResource("NavigationMesh_3xu0m")
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0)
+use_collision = true
+size = Vector3(20.235, 0.135, 42.235)
+material = SubResource("StandardMaterial3D_g1fxm")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(20.5, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 1)
+material = SubResource("StandardMaterial3D_kf2tr")
+
+[node name="Towers" type="Node3D" parent="."]
+
+[node name="princess_blue_1" parent="Towers" instance=ExtResource("4_t8k56")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, -7, 0, 15)
+script = ExtResource("9_mpva0")
+
+[node name="HealthBar3D" parent="Towers/princess_blue_1" instance=ExtResource("6_sx7rr")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 15, 0)
+
+[node name="Area3D" type="Area3D" parent="Towers/princess_blue_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Towers/princess_blue_1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00543e-05, 0, 0)
+shape = SubResource("BoxShape3D_s2h1g")
+
+[node name="Timer" type="Timer" parent="Towers/princess_blue_1"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_blue_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
+emitting = false
+amount = 40
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_pljf3")
+draw_pass_1 = SubResource("BoxMesh_rrnea")
+
+[node name="princess_blue_2" parent="Towers" instance=ExtResource("4_t8k56")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 7, 0, 15)
+script = ExtResource("9_mpva0")
+
+[node name="HealthBar3D" parent="Towers/princess_blue_2" instance=ExtResource("6_sx7rr")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 14, 0.5)
+
+[node name="Area3D" type="Area3D" parent="Towers/princess_blue_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4699, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Towers/princess_blue_2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4698, 0, 0)
+shape = SubResource("BoxShape3D_s2h1g")
+
+[node name="Timer" type="Timer" parent="Towers/princess_blue_2"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_blue_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_pljf3")
+draw_pass_1 = SubResource("BoxMesh_rrnea")
+
+[node name="king_blue" parent="Towers" instance=ExtResource("4_t8k56")]
+transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, 17)
+script = ExtResource("9_mpva0")
+
+[node name="HealthBar3D" parent="Towers/king_blue" instance=ExtResource("6_sx7rr")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 14, 0.500002)
+
+[node name="Area3D" type="Area3D" parent="Towers/king_blue"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1463, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Towers/king_blue/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7349, 0, 0)
+shape = SubResource("BoxShape3D_s2h1g")
+
+[node name="Timer" type="Timer" parent="Towers/king_blue"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/king_blue"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_pljf3")
+draw_pass_1 = SubResource("BoxMesh_rrnea")
+
+[node name="princess_red_1" parent="Towers" instance=ExtResource("9_3s2x7")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, -7, 0, -15)
+script = ExtResource("9_mpva0")
+
+[node name="HealthBar3D" parent="Towers/princess_red_1" instance=ExtResource("6_sx7rr")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 15, 0.5)
+
+[node name="Area3D" type="Area3D" parent="Towers/princess_red_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7349, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Towers/princess_red_1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7349, 0, 0)
+shape = SubResource("BoxShape3D_s2h1g")
+
+[node name="Timer" type="Timer" parent="Towers/princess_red_1"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_red_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_pljf3")
+draw_pass_1 = SubResource("BoxMesh_rrnea")
+
+[node name="princess_red_2" parent="Towers" instance=ExtResource("9_3s2x7")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 7, 0, -14.97)
+script = ExtResource("9_mpva0")
+
+[node name="HealthBar3D" parent="Towers/princess_red_2" instance=ExtResource("6_sx7rr")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 15, 0.5)
+
+[node name="Area3D" type="Area3D" parent="Towers/princess_red_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7349, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Towers/princess_red_2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7349, 0, 0)
+shape = SubResource("BoxShape3D_s2h1g")
+
+[node name="Timer" type="Timer" parent="Towers/princess_red_2"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_red_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_pljf3")
+draw_pass_1 = SubResource("BoxMesh_rrnea")
+
+[node name="king_red" parent="Towers" instance=ExtResource("9_3s2x7")]
+transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, -17)
+script = ExtResource("9_mpva0")
+
+[node name="HealthBar3D" parent="Towers/king_red" instance=ExtResource("6_sx7rr")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 14, 0.5)
+
+[node name="Area3D" type="Area3D" parent="Towers/king_red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1463, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Towers/king_red/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7349, 0, 0)
+shape = SubResource("BoxShape3D_s2h1g")
+
+[node name="Timer" type="Timer" parent="Towers/king_red"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/king_red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_pljf3")
+draw_pass_1 = SubResource("BoxMesh_rrnea")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 34.2503, 3.5)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.985843, 0.0967881, -0.136917, -0.0276133, 0.89914, 0.436789, 0.165383, -0.426824, 0.889083, -0.687316, 17.1166, 3.99946)
+light_energy = 1.3
+shadow_enabled = true
+shadow_opacity = 0.14
+sky_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 824.0
+offset_right = 122.0
+offset_bottom = 931.0
+text = "Knight"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 824.0
+offset_right = 238.0
+offset_bottom = 931.0
+text = "Musk"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 824.0
+offset_right = 354.0
+offset_bottom = 931.0
+text = "knight"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 824.0
+offset_right = 467.0
+offset_bottom = 931.0
+text = "what"
+
+[node name="Troops" type="Node3D" parent="."]
+
+[node name="princess_blue_1" parent="Troops" instance=ExtResource("7_gqj83")]
+transform = Transform3D(-2.03258e-08, 0, -0.465, 0, 0.465, 0, 0.465, 0, -2.03258e-08, -7.025, 2.92, 15)
+script = ExtResource("9_mpva0")
+
+[node name="princess_blue_2" parent="Troops" instance=ExtResource("7_gqj83")]
+transform = Transform3D(-2.03258e-08, 0, -0.465, 0, 0.465, 0, 0.465, 0, -2.03258e-08, 6.975, 3, 15)
+script = ExtResource("9_mpva0")
+
+[node name="king_blue" parent="Troops" instance=ExtResource("7_gqj83")]
+transform = Transform3D(-2.03258e-08, 0, -0.465, 0, 0.465, 0, 0.465, 0, -2.03258e-08, -0.275, 4.5, 17.26)
+script = ExtResource("9_mpva0")
+
+[node name="princess_red_1" parent="Troops" instance=ExtResource("8_s601l")]
+transform = Transform3D(-2.03258e-08, 0, 0.465, 0, 0.465, 0, -0.465, 0, -2.03258e-08, -7, 3, -15)
+script = ExtResource("9_mpva0")
+
+[node name="princess_red_2" parent="Troops" instance=ExtResource("8_s601l")]
+transform = Transform3D(-2.03258e-08, 0, 0.465, 0, 0.465, 0, -0.465, 0, -2.03258e-08, 7, 3, -15)
+script = ExtResource("9_mpva0")
+
+[node name="king_red" parent="Troops" instance=ExtResource("8_s601l")]
+transform = Transform3D(-2.03258e-08, 0, 0.465, 0, 0.465, 0, -0.465, 0, -2.03258e-08, -0.275, 4.5, -17)
+script = ExtResource("9_mpva0")
+
+[node name="Areas" type="Node3D" parent="."]
+
+[node name="princess_red_1" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/princess_red_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.045, 1, -8.44)
+shape = SubResource("BoxShape3D_buf4o")
+
+[node name="princess_red_2" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/princess_red_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.785, 1, -8.44)
+shape = SubResource("BoxShape3D_buf4o")
+
+[node name="king_red" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/king_red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1, -15)
+shape = SubResource("BoxShape3D_33cnk")
+
+[node name="princess_blue_1" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/princess_blue_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.135, 1, 10)
+shape = SubResource("BoxShape3D_buf4o")
+
+[node name="princess_blue_2" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/princess_blue_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.695, 1, 10)
+shape = SubResource("BoxShape3D_buf4o")
+
+[node name="king_blue" type="Area3D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/king_blue"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69, 1, 15)
+shape = SubResource("BoxShape3D_33cnk")
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="princess_red_1" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -14)
+
+[node name="princess_red_2" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -14)
+
+[node name="king_red" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -15)
+
+[node name="princess_blue_1" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 15)
+
+[node name="princess_blue_2" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 15)
+
+[node name="king_blue" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[connection signal="body_entered" from="Towers/princess_blue_1/Area3D" to="." method="_on_tower_body_entered_princess_blue_1"]
+[connection signal="body_entered" from="Towers/princess_blue_2/Area3D" to="." method="_on_tower_body_entered_princess_blue_2"]
+[connection signal="body_entered" from="Towers/king_blue/Area3D" to="." method="_on_tower_body_entered_king_blue"]
+[connection signal="body_entered" from="Towers/princess_red_1/Area3D" to="." method="_on_tower_body_entered_princess_red_1"]
+[connection signal="body_entered" from="Towers/princess_red_2/Area3D" to="." method="_on_tower_body_entered_princess_red_2"]
+[connection signal="body_entered" from="Towers/king_red/Area3D" to="." method="_on_tower_body_entered_king_red"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="body_entered" from="Areas/princess_red_1" to="." method="_on_princess_red_1_body_entered"]
+[connection signal="body_exited" from="Areas/princess_red_1" to="." method="_on_princess_red_1_body_exited"]
+[connection signal="body_entered" from="Areas/princess_red_2" to="." method="_on_princess_red_2_body_entered"]
+[connection signal="body_exited" from="Areas/princess_red_2" to="." method="_on_princess_red_2_body_exited"]
+[connection signal="body_entered" from="Areas/king_red" to="." method="_on_king_red_body_entered"]
+[connection signal="body_exited" from="Areas/king_red" to="." method="_on_king_red_body_exited"]
+[connection signal="body_entered" from="Areas/princess_blue_1" to="." method="_on_princess_blue_1_body_entered"]
+[connection signal="body_exited" from="Areas/princess_blue_1" to="." method="_on_princess_blue_1_body_exited"]
+[connection signal="body_entered" from="Areas/princess_blue_2" to="." method="_on_princess_blue_2_body_entered"]
+[connection signal="body_exited" from="Areas/princess_blue_2" to="." method="_on_princess_blue_2_body_exited"]
+[connection signal="body_entered" from="Areas/king_blue" to="." method="_on_king_blue_body_entered"]
+[connection signal="body_exited" from="Areas/king_blue" to="." method="_on_king_blue_body_exited"]

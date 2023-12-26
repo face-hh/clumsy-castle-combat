@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bak2yl81i55qm"]
+
+[ext_resource type="Script" path="res://Scripts/HealthBar3D.gd" id="1_6rw8i"]
+[ext_resource type="Texture2D" uid="uid://c1rcpvjomkx37" path="res://Sprites/progress_bar_Filling.png" id="1_ipc2w"]
+[ext_resource type="PackedScene" uid="uid://cc6epgs8u1nwi" path="res://Scenes/2d_hp_bar.tscn" id="2_cdfkf"]
+
+[node name="HealthBar3D" type="Sprite3D" node_paths=PackedStringArray("viewport", "hpbar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+billboard = 1
+texture = ExtResource("1_ipc2w")
+script = ExtResource("1_6rw8i")
+viewport = NodePath("SubViewport")
+hpbar = NodePath("SubViewport/2d_hp_bar")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(250, 54)
+
+[node name="2d_hp_bar" parent="SubViewport" instance=ExtResource("2_cdfkf")]

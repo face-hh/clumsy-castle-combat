@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0qx73nfb3wt3"]
+
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_ovnih"]
+[ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="2_gbtg2"]
+[ext_resource type="PackedScene" uid="uid://c38e20i6ge038" path="res://Scenes/Raw/musk.glb" id="3_nkorc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_arebl"]
+radius = 0.39
+height = 3.825
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_11y5m"]
+height = 2.505
+radius = 8.36
+
+[node name="Musk" type="CharacterBody3D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_ovnih")
+timer = NodePath("Timer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_arebl")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HealthBar3D" parent="." instance=ExtResource("2_gbtg2")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Models" type="Node3D" parent="."]
+
+[node name="blue" parent="Models" instance=ExtResource("3_nkorc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, 0)
+
+[node name="red" parent="Models" instance=ExtResource("3_nkorc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, 0)
+visible = false
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_11y5m")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_range_body_entered_MUSK"]
