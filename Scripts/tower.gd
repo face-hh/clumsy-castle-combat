@@ -1,3 +1,5 @@
+class_name Tower
+
 extends Node3D
 
 var health: float
@@ -5,10 +7,10 @@ var total_health: float
 var damage: int
 var hitspeed: float # seconds
 
-var healthbar
-var timer
+var healthbar: HealthBar
+var timer: Timer
 
-func _ready():
+func _ready() -> void:
 	if "princess" in name:
 		health = 4424
 		total_health = 4424
@@ -22,20 +24,21 @@ func _ready():
 
 	# This is in here because the Tower Troops and Towers share the same scripts.
 	if get_parent().name == "Towers":
-		get_node("HealthBar3D").side = name.split("_")[1]
-		get_node("HealthBar3D").update_colors()
-		healthbar = get_node("HealthBar3D")
+		healthbar = get_node("HealthBar3D") as HealthBar
+
+		healthbar.side = name.split("_")[1]
+		healthbar.update_colors()
 
 		timer = get_node("Timer")
 		timer.wait_time = hitspeed
 
-func play_death():
-	var particles = get_node("GPUParticles3D")
+func play_death() -> void:
+	var particles: GPUParticles3D = get_node("GPUParticles3D")
 	particles.emitting = true
-	var time = (particles.lifetime * 2) / particles.speed_scale
+	var time: float = (particles.lifetime * 2) / particles.speed_scale
 
 	get_tree().create_timer(time).connect("timeout", death)
 
-func death():
+func death() -> void:
 	queue_free()
 	$"../../Markers".get_node(str(name)).queue_free()
