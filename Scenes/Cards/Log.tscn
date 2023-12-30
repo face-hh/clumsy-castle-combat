@@ -1,19 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8v4k8oqfdttj"]
 
 [ext_resource type="Script" path="res://Scripts/character.gd" id="1_7cdi2"]
-[ext_resource type="PackedScene" uid="uid://gpkksb62gh1h" path="res://Scenes/Raw/log.glb" id="3_td6he"]
+[ext_resource type="PackedScene" uid="uid://d4i0ed0povyqx" path="res://Scenes/Raw/log.glb" id="3_td6he"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ai61"]
-radius = 0.675
-height = 8.23
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1nn6g"]
+height = 2.505
+radius = 0.9
 
 [node name="Log" type="CharacterBody3D" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_7cdi2")
+side = null
 timer = NodePath("Timer")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -0.21, 0.465, -0.195)
-shape = SubResource("CapsuleShape3D_5ai61")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -23,8 +20,18 @@ shape = SubResource("CapsuleShape3D_5ai61")
 transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 1, 0)
 
 [node name="blue" parent="Models" instance=ExtResource("3_td6he")]
-transform = Transform3D(0.771, 0, 0, 0, 0.771, 0, 0, 0, 0.771, 0, -5.111, 0)
+transform = Transform3D(-3.12021e-08, 0, -0.713821, 0, 0.713821, 0, 0.713821, 0, -3.12021e-08, 0.603252, -4.37561, 0)
+visible = false
 
 [node name="red" parent="Models" instance=ExtResource("3_td6he")]
-transform = Transform3D(0.771, 0, 0, 0, 0.771, 0, 0, 0, 0.771, 0, -5.111, 0)
+transform = Transform3D(-3.12021e-08, 0, -0.713821, 0, 0.713821, 0, 0.713821, 0, -3.12021e-08, 0.603252, -4.37561, 0)
 visible = false
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_1nn6g")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_log_entered"]

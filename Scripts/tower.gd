@@ -7,6 +7,7 @@ var total_health: float
 var damage: int
 var hitspeed: float # seconds
 
+var getting_destroyed: bool = false
 var healthbar: HealthBar
 var timer: Timer
 
@@ -27,18 +28,16 @@ func _ready() -> void:
 		healthbar = get_node("HealthBar3D") as HealthBar
 
 		healthbar.side = name.split("_")[1]
+		healthbar.not_tower = false
+		healthbar.max_value = total_health
 		healthbar.update_colors()
 
 		timer = get_node("Timer")
 		timer.wait_time = hitspeed
 
 func play_death() -> void:
-	var particles: GPUParticles3D = get_node("GPUParticles3D")
-	particles.emitting = true
-	var time: float = (particles.lifetime * 2) / particles.speed_scale
+	getting_destroyed = true
+	$"../../Areas".get_node(str(name)).queue_free()
 
-	get_tree().create_timer(time).connect("timeout", death)
-
-func death() -> void:
 	queue_free()
 	$"../../Markers".get_node(str(name)).queue_free()

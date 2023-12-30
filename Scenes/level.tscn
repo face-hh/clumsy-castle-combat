@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8wk0e30jn56"]
+[gd_scene load_steps=17 format=3 uid="uid://c8wk0e30jn56"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_mehdx"]
 [ext_resource type="PackedScene" uid="uid://yuyf8wu8rjtf" path="res://Models/bridge.glb" id="2_cmccf"]
@@ -26,16 +26,6 @@ albedo_color = Color(0.352763, 0.552752, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2h1g"]
 size = Vector3(8, 15.285, 10)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pljf3"]
-angle_min = -720.0
-angle_max = 720.0
-gravity = Vector3(0, 96.655, 0)
-scale_min = 0.05
-scale_max = 1.3
-anim_speed_max = 2.13
-
-[sub_resource type="BoxMesh" id="BoxMesh_rrnea"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_buf4o"]
 size = Vector3(9.67, 1, 19.86)
 
@@ -43,6 +33,7 @@ size = Vector3(9.67, 1, 19.86)
 size = Vector3(10.79, 1, 9.94)
 
 [node name="GAME" type="Node3D" node_paths=PackedStringArray("PRINCESS_RED_1", "PRINCESS_RED_2", "KING_RED", "PRINCESS_BLUE_1", "PRINCESS_BLUE_2", "KING_BLUE", "T_PRINCESS_RED_1", "T_PRINCESS_RED_2", "T_KING_RED", "T_PRINCESS_BLUE_1", "T_PRINCESS_BLUE_2", "T_KING_BLUE", "Button1", "Button2", "Button3", "Button4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("1_mehdx")
 PRINCESS_RED_1 = NodePath("Troops/princess_red_1")
 PRINCESS_RED_2 = NodePath("Troops/princess_red_2")
@@ -62,9 +53,6 @@ Button2 = NodePath("CanvasLayer/Control/Button2")
 Button3 = NodePath("CanvasLayer/Control/Button3")
 Button4 = NodePath("CanvasLayer/Control/Button4")
 
-[node name="Grass" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.08, 0)
-
 [node name="Bridge" type="Node3D" parent="."]
 
 [node name="bridge" parent="Bridge" instance=ExtResource("2_cmccf")]
@@ -72,8 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, 2)
 
 [node name="bridge2" parent="Bridge" instance=ExtResource("2_cmccf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -1, 2)
-
-[node name="NetworkedNodes" type="Node3D" parent="."]
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1.2, -0.2, -1, 0.1)
@@ -112,14 +98,6 @@ shape = SubResource("BoxShape3D_s2h1g")
 
 [node name="Timer" type="Timer" parent="Towers/princess_blue_1"]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_blue_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
-emitting = false
-amount = 40
-one_shot = true
-process_material = SubResource("ParticleProcessMaterial_pljf3")
-draw_pass_1 = SubResource("BoxMesh_rrnea")
-
 [node name="princess_blue_2" parent="Towers" instance=ExtResource("4_t8k56")]
 transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 7, 0, 15)
 script = ExtResource("9_mpva0")
@@ -135,13 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.4698, 0, 0)
 shape = SubResource("BoxShape3D_s2h1g")
 
 [node name="Timer" type="Timer" parent="Towers/princess_blue_2"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_blue_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_pljf3")
-draw_pass_1 = SubResource("BoxMesh_rrnea")
 
 [node name="king_blue" parent="Towers" instance=ExtResource("4_t8k56")]
 transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, 17)
@@ -159,13 +130,6 @@ shape = SubResource("BoxShape3D_s2h1g")
 
 [node name="Timer" type="Timer" parent="Towers/king_blue"]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/king_blue"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_pljf3")
-draw_pass_1 = SubResource("BoxMesh_rrnea")
-
 [node name="princess_red_1" parent="Towers" instance=ExtResource("9_3s2x7")]
 transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, -7, 0, -15)
 script = ExtResource("9_mpva0")
@@ -181,13 +145,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7349, 0, 0)
 shape = SubResource("BoxShape3D_s2h1g")
 
 [node name="Timer" type="Timer" parent="Towers/princess_red_1"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_red_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_pljf3")
-draw_pass_1 = SubResource("BoxMesh_rrnea")
 
 [node name="princess_red_2" parent="Towers" instance=ExtResource("9_3s2x7")]
 transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 7, 0, -14.97)
@@ -205,13 +162,6 @@ shape = SubResource("BoxShape3D_s2h1g")
 
 [node name="Timer" type="Timer" parent="Towers/princess_red_2"]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/princess_red_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_pljf3")
-draw_pass_1 = SubResource("BoxMesh_rrnea")
-
 [node name="king_red" parent="Towers" instance=ExtResource("9_3s2x7")]
 transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, -17)
 script = ExtResource("9_mpva0")
@@ -227,13 +177,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7349, 0, 0)
 shape = SubResource("BoxShape3D_s2h1g")
 
 [node name="Timer" type="Timer" parent="Towers/king_red"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Towers/king_red"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40964, 0)
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_pljf3")
-draw_pass_1 = SubResource("BoxMesh_rrnea")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 34.2503, 3.5)
@@ -275,7 +218,7 @@ offset_left = 250.0
 offset_top = 824.0
 offset_right = 354.0
 offset_bottom = 931.0
-text = "knight"
+text = "Log"
 
 [node name="Button4" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -334,13 +277,13 @@ shape = SubResource("BoxShape3D_33cnk")
 [node name="princess_blue_1" type="Area3D" parent="Areas"]
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/princess_blue_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.135, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.135, 1, 12.4677)
 shape = SubResource("BoxShape3D_buf4o")
 
 [node name="princess_blue_2" type="Area3D" parent="Areas"]
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Areas/princess_blue_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.695, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.695, 1, 12.6804)
 shape = SubResource("BoxShape3D_buf4o")
 
 [node name="king_blue" type="Area3D" parent="Areas"]

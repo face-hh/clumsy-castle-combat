@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dds2cgvf62gj1"]
+[gd_scene load_steps=8 format=3 uid="uid://bck2bawygt6pm"]
 
-[ext_resource type="Script" path="res://Scripts/character.gd" id="1_ildow"]
-[ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="2_pri2u"]
-[ext_resource type="PackedScene" uid="uid://bk6ygiwku7eo7" path="res://Scenes/Raw/knight_blue.glb" id="3_tbjnf"]
-[ext_resource type="PackedScene" uid="uid://cw7j20j6wr32p" path="res://Scenes/Raw/knight_red.glb" id="4_scgel"]
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_phm4u"]
+[ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="2_s6r3f"]
+[ext_resource type="PackedScene" uid="uid://bk6ygiwku7eo7" path="res://Scenes/Raw/knight_blue.glb" id="3_34v6t"]
+[ext_resource type="PackedScene" uid="uid://cw7j20j6wr32p" path="res://Scenes/Raw/knight_red.glb" id="4_ixm4m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ai61"]
 radius = 0.405
@@ -18,14 +18,14 @@ height = 2.505
 radius = 0.9
 
 [node name="Knight" type="CharacterBody3D"]
-script = ExtResource("1_ildow")
+script = ExtResource("1_phm4u")
 side = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_5ai61")
 
-[node name="HealthBar3D" parent="." instance=ExtResource("2_pri2u")]
+[node name="HealthBar3D" parent="." instance=ExtResource("2_s6r3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="Timer" type="Timer" parent="."]
@@ -33,10 +33,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 [node name="Models" type="Node3D" parent="."]
 transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 1, 0)
 
-[node name="blue" parent="Models" instance=ExtResource("3_tbjnf")]
+[node name="blue" parent="Models" instance=ExtResource("3_34v6t")]
 visible = false
 
-[node name="red" parent="Models" instance=ExtResource("4_scgel")]
+[node name="red" parent="Models" instance=ExtResource("4_ixm4m")]
 visible = false
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]

@@ -4,9 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://c1rcpvjomkx37" path="res://Sprites/progress_bar_Filling.png" id="2_6d1p1"]
 [ext_resource type="Texture2D" uid="uid://yovejg5csior" path="res://Sprites/progress_lvl.png" id="2_pm3u8"]
 
-[node name="2d_hp_bar" type="TextureProgressBar"]
+[node name="Node2D" type="Node2D"]
+
+[node name="2d_hp_bar" type="TextureProgressBar" parent="."]
 value = 100.0
 texture_under = ExtResource("1_5sa0u")
 texture_over = ExtResource("2_pm3u8")
 texture_progress = ExtResource("2_6d1p1")
 texture_progress_offset = Vector2(-6.225, 0)
+
+[node name="Label" type="Label" parent="."]
+process_mode = 3
+offset_left = 86.0
+offset_top = 3.0
+offset_right = 470.0
+offset_bottom = 210.0
+scale = Vector2(0.225, 0.225)
+theme_override_colors/font_color = Color(0.93, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 151
+text = "4,263"

@@ -6,6 +6,7 @@ var card_name: String
 
 var health: int
 var damage: int
+var tower_damage: int
 var elixir: int
 
 var hitspeed: float
@@ -16,8 +17,8 @@ var deploy_time: int
 var target: Array[String]
 var transport: String
 
-var rarity: String
-var type: String
+var rarity: DataType.RARITIES
+var type: DataType.TYPES
 
 var scene: PackedScene
 

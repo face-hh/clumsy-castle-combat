@@ -21,10 +21,6 @@ CardTypes="*res://Scripts/card_types.gd"
 
 [debug]
 
-gdscript/warnings/shadowed_variable=2
-gdscript/warnings/property_used_as_function=2
-gdscript/warnings/constant_used_as_function=2
-gdscript/warnings/function_used_as_property=2
 gdscript/warnings/untyped_declaration=2
 gdscript/warnings/unsafe_property_access=2
 gdscript/warnings/unsafe_method_access=2

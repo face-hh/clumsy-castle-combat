@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://gpkksb62gh1h"
+uid="uid://d4i0ed0povyqx"
 path="res://.godot/imported/log.glb-5f1303a1654616355967bf205b0304c7.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/log.glb-5f1303a1654616355967bf205b0304c7.scn"
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
