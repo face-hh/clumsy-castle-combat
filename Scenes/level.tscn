@@ -202,7 +202,7 @@ offset_left = 18.0
 offset_top = 824.0
 offset_right = 122.0
 offset_bottom = 931.0
-text = "Knight"
+text = "RoyalGiant"
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -226,7 +226,7 @@ offset_left = 363.0
 offset_top = 824.0
 offset_right = 467.0
 offset_bottom = 931.0
-text = "what"
+text = "MiniPekka"
 
 [node name="Troops" type="Node3D" parent="."]
 

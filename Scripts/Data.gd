@@ -14,6 +14,7 @@ var Knight: CardType = CardType.new()
 var Musk: CardType = CardType.new()
 var Log: CardType = CardType.new()
 var MiniPekka: CardType = CardType.new()
+var RoyalGiant: CardType = CardType.new()
 
 func _ready() -> void:
 	Knight.card_name = "Knight"
@@ -72,7 +73,21 @@ func _ready() -> void:
 	MiniPekka.rarity = RARITIES.RARE
 	MiniPekka.scene = preload("res://Scenes/Cards/MiniPekka.tscn")
 
-var cards: Array[CardType] = [Knight, Musk, Log, MiniPekka]
+	RoyalGiant.card_name = "RoyalGiant"
+	RoyalGiant.health = 4464
+	RoyalGiant.damage = 446
+	RoyalGiant.tower_damage = 446
+	RoyalGiant.elixir = 6
+	RoyalGiant.hitspeed = 1.7
+	RoyalGiant.speed = 45
+	RoyalGiant.deploy_time = 1
+	RoyalGiant.target = ["buildings"]
+	RoyalGiant.transport = "ground"
+	RoyalGiant.type = TYPES.TROOP
+	RoyalGiant.rarity = RARITIES.COMMON
+	RoyalGiant.scene = preload("res://Scenes/Cards/RoyalGiant.tscn")
+
+var cards: Array[CardType] = [Knight, Musk, Log, MiniPekka, RoyalGiant]
 
 func get_card(given_name: String) -> CardType:
 	for card in cards:

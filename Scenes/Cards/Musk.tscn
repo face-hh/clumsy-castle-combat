@@ -18,7 +18,6 @@ radius = 7.0
 
 [node name="Musk" type="CharacterBody3D"]
 script = ExtResource("1_ovnih")
-side = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -32,10 +31,6 @@ use_3d_avoidance = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 0.5
-use_3d_avoidance = true
 
 [node name="Models" type="Node3D" parent="."]
 

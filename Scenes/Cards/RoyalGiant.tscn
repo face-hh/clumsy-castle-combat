@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwnrjvp0n3vv"]
+
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_yaq0q"]
+[ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="2_ysjmx"]
+[ext_resource type="PackedScene" uid="uid://byu1kjix1mf1k" path="res://Scenes/Raw/royal_giant.glb" id="3_x60p4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_arebl"]
+radius = 0.6
+height = 5.975
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s3cch"]
+height = 2.505
+radius = 5.75
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cyr0x"]
+height = 2.505
+radius = 7.0
+
+[node name="Musk" type="CharacterBody3D"]
+script = ExtResource("1_yaq0q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.905, 0)
+shape = SubResource("CapsuleShape3D_arebl")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+use_3d_avoidance = true
+
+[node name="HealthBar3D" parent="." instance=ExtResource("2_ysjmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Models" type="Node3D" parent="."]
+
+[node name="blue" parent="Models" instance=ExtResource("3_x60p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.525, 0)
+visible = false
+
+[node name="red" parent="Models" instance=ExtResource("3_x60p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.525, 0)
+visible = false
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_s3cch")
+
+[node name="Vision" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vision"]
+shape = SubResource("CylinderShape3D_cyr0x")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_range_body_entered_MUSK"]
+[connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]

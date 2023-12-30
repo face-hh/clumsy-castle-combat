@@ -9,7 +9,6 @@ radius = 0.9
 
 [node name="Log" type="CharacterBody3D" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_7cdi2")
-side = null
 timer = NodePath("Timer")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

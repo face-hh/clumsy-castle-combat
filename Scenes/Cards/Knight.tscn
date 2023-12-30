@@ -19,7 +19,6 @@ radius = 0.9
 
 [node name="Knight" type="CharacterBody3D"]
 script = ExtResource("1_ildow")
-side = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -38,10 +37,6 @@ visible = false
 
 [node name="red" parent="Models" instance=ExtResource("4_scgel")]
 visible = false
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 0.65
-use_3d_avoidance = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

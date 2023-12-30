@@ -37,6 +37,9 @@ signal interaction_finished
 
 func _ready() -> void:
 	spawn_card("Musk", "red", Vector3(0, 3, -7))
+	spawn_card("Log", "red", Vector3(2, 3, -7))
+	spawn_card("Knight", "red", Vector3(4, 3, -7))
+	spawn_card("MiniPekka", "red", Vector3(6, 3, -7))
 func _process(_delta: float) -> void:
 	for tower: Array in active_towers:
 		if !is_instance_valid(tower[1]):
@@ -94,7 +97,7 @@ func start_shoot(target: Node3D, node: Tower) -> void:
 		return
 	if ("red" in target.name and "red" in node.name) or ("blue" in target.name and "blue" in node.name) or not ("enemy" in target.name) or (target as Character).res.type == DataType.TYPES.SPELL:
 		return
-
+	print(node)
 	var connections: int = node.timer.get_signal_connection_list("timeout").size()
 	if connections > 0:
 		active_towers.append([node, target])

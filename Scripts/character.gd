@@ -43,12 +43,11 @@ func _ready() -> void:
 		healthbar.side = side
 		healthbar.update_colors()
 
-	if "Knight" in name or "Musk" in name or "Log" in name:
-		node = $Models.get_node(side)
-		anim = node.get_node("AnimationPlayer")
+	node = $Models.get_node(side)
+	anim = node.get_node("AnimationPlayer")
 
-		node.visible = true
-		anim.play("walk")
+	node.visible = true
+	anim.play("walk")
 
 var entityNearby: CharacterBody3D
 var closestMarkerPosition: Vector3 # Variable to store the relative position of the closest marker
@@ -84,9 +83,9 @@ func move_type_troop(delta: float) -> void:
 	direction = direction.normalized()
 
 	velocity = velocity.lerp(direction * speed, accel * delta)
-
 	look_at(nav.target_position, Vector3.UP)
 	rotation.y = rotation.y - deg_to_rad(190)
+	print(rotation.y)
 	rotation.z = 0
 	rotation.x = 0
 
@@ -97,7 +96,11 @@ var move_distance: float = 20.0  # Adjust the distance as needed
 var elapsed_time: float = 0.0
 
 func move_type_spell(delta: float) -> void:
-	var translation: Vector3 = Vector3(0, 0, -(move_speed * delta))
+	var z: float = move_speed * delta
+	if side == "blue":
+		z = -z
+
+	var translation: Vector3 = Vector3(0, 0, z)
 	translate(translation)
 
 	# Update elapsed time
@@ -130,6 +133,8 @@ func ranged_troop_shoot(body: Node3D) -> void:
 
 		var game: Game = get_parent().get_parent() as Game
 
+		if ("buildings" in res.target) and body is Character:
+			return
 		if !(side in body.name) and !self_spell:
 			game.start_card_shoot(self, body)
 		elif self_spell:
@@ -143,6 +148,8 @@ func _on_vision_body_entered(body: Node3D) -> void:
 
 	if opposite_side in body.name and body is Character and !(body == self):
 		entityNearby = body
+	if "buildings" in res.target:
+		entityNearby = null
 
 func _on_vision_body_exited(body: Node3D) -> void:
 	if body == entityNearby:
