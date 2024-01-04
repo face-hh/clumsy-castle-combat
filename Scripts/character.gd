@@ -49,6 +49,9 @@ func _ready() -> void:
 	node.visible = true
 	anim.play("walk")
 
+	if is_instance_valid(res.audio_deploy[0]):
+		res.audio_deploy[0].play()
+
 var entityNearby: CharacterBody3D
 var closestMarkerPosition: Vector3 # Variable to store the relative position of the closest marker
 
@@ -83,9 +86,10 @@ func move_type_troop(delta: float) -> void:
 	direction = direction.normalized()
 
 	velocity = velocity.lerp(direction * speed, accel * delta)
+
 	look_at(nav.target_position, Vector3.UP)
+
 	rotation.y = rotation.y - deg_to_rad(190)
-	print(rotation.y)
 	rotation.z = 0
 	rotation.x = 0
 
@@ -109,15 +113,20 @@ func move_type_spell(delta: float) -> void:
 	# Check if the determined distance is reached
 	if elapsed_time >= move_distance / move_speed:
 		queue_free()
+		if res.audio_death.size() > 0:
+			res.audio_death[0].play()
+
 func take_damage(taken_damage: int) -> void:
 	health -= taken_damage
 	($"HealthBar3D" as HealthBar).update_value((health / total_health) * 100, health)
 	if health <= 0:
+		res.audio_death[0].play()
 		queue_free()
 
 func attack() -> void:
 	anim.stop()
 	stop_moving = true
+	(res.audio_attack.pick_random() as AudioStreamPlayer).play()
 	anim.play("attack", -1, hitspeed)
 
 func t(body: Node3D) -> void:

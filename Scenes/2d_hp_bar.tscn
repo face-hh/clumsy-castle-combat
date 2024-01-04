@@ -26,3 +26,17 @@ theme_override_constants/outline_size = 30
 theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 151
 text = "4,263"
+
+[node name="Label2" type="Label" parent="."]
+process_mode = 3
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 387.0
+offset_bottom = 210.0
+scale = Vector2(0.225, 0.225)
+theme_override_colors/font_color = Color(0.93, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 151
+text = "15"

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0kb1gthomt8i"]
+
+[ext_resource type="Texture2D" uid="uid://dwbfuwlf5486" path="res://Sprites/HD-wallpaper-clash-royale-royal.jpg" id="1_760dp"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_vs54x"]
+[ext_resource type="FontFile" uid="uid://dssukj517qdde" path="res://Fonts/You Blockhead.ttf" id="2_t5yk4"]
+[ext_resource type="AudioStream" uid="uid://cejpng5yx3ti0" path="res://Sounds/intro.mp3" id="4_x0cof"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_vs54x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(269, 538.304)
+scale = Vector2(0.6825, 0.824658)
+texture = ExtResource("1_760dp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 81.0
+offset_top = 221.0
+offset_right = 447.0
+offset_bottom = 587.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 91.0
+offset_top = 332.0
+offset_right = 12024.0
+offset_bottom = 12299.0
+scale = Vector2(0.035, 0.035)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_t5yk4")
+theme_override_font_sizes/font_size = 446
+text = "Q - camera FORWARD
+E - camera DOWNWARD
+WASD - camera movement
+V - spawn random enemy troop
+G - slow down time by x10
+R - restart sandbox
+RIGHT CLICK - move camera
+O - debug"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 75.0
+offset_top = 813.0
+offset_right = 470.0
+offset_bottom = 934.0
+theme_override_fonts/font = ExtResource("2_t5yk4")
+theme_override_font_sizes/font_size = 76
+text = "no way"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x0cof")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp0abyyfen1xy"
 path.s3tc="res://.godot/imported/royal_giant_Untitled-Untitled.png-7b6b1b02b26d6c1df7507d63dcd15bb0.s3tc.ctex"
+path.etc2="res://.godot/imported/royal_giant_Untitled-Untitled.png-7b6b1b02b26d6c1df7507d63dcd15bb0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://Scenes/Raw/royal_giant_Untitled-Untitled.png"
-dest_files=["res://.godot/imported/royal_giant_Untitled-Untitled.png-7b6b1b02b26d6c1df7507d63dcd15bb0.s3tc.ctex"]
+dest_files=["res://.godot/imported/royal_giant_Untitled-Untitled.png-7b6b1b02b26d6c1df7507d63dcd15bb0.s3tc.ctex", "res://.godot/imported/royal_giant_Untitled-Untitled.png-7b6b1b02b26d6c1df7507d63dcd15bb0.etc2.ctex"]
 
 [params]
 

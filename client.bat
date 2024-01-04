@@ -1,1 +1,0 @@
-"C:\Users\Mitch\Documents\godot\Godot_v4.0-stable_win64.exe\Godot_v4.0-stable_win64.exe" --path .

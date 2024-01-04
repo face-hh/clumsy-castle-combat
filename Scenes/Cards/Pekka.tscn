@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://c30plympcy1hy"]
+
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_wjxdc"]
+[ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="2_rj6c0"]
+[ext_resource type="PackedScene" uid="uid://bci20m8ceirx7" path="res://Scenes/Raw/pekka.glb" id="3_hu47r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ai61"]
+radius = 0.915
+height = 4.145
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_08crp"]
+height = 2.505
+radius = 7.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7plj3"]
+height = 2.505
+radius = 1.345
+
+[node name="Pekka" type="CharacterBody3D"]
+script = ExtResource("1_wjxdc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68, 0)
+shape = SubResource("CapsuleShape3D_5ai61")
+
+[node name="HealthBar3D" parent="." instance=ExtResource("2_rj6c0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Models" type="Node3D" parent="."]
+transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 1, 0)
+
+[node name="blue" parent="Models" instance=ExtResource("3_hu47r")]
+transform = Transform3D(1.545, 0, 0, 0, 1.545, 0, 0, 0, 1.545, 0, -0.405, 0)
+visible = false
+
+[node name="red" parent="Models" instance=ExtResource("3_hu47r")]
+transform = Transform3D(1.545, 0, 0, 0, 1.545, 0, 0, 0, 1.545, 0, -0.405, 0)
+visible = false
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="Vision" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vision"]
+shape = SubResource("CylinderShape3D_08crp")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_7plj3")
+
+[connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_knight_area_entered"]

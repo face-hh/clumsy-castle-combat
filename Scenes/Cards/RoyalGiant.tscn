@@ -28,7 +28,7 @@ avoidance_enabled = true
 use_3d_avoidance = true
 
 [node name="HealthBar3D" parent="." instance=ExtResource("2_ysjmx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.595, 0)
 
 [node name="Timer" type="Timer" parent="."]
 

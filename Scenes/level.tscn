@@ -1,24 +1,340 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8wk0e30jn56"]
+[gd_scene load_steps=102 format=3 uid="uid://c8wk0e30jn56"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_mehdx"]
 [ext_resource type="PackedScene" uid="uid://yuyf8wu8rjtf" path="res://Models/bridge.glb" id="2_cmccf"]
 [ext_resource type="PackedScene" uid="uid://07uqvtqlqdnj" path="res://Scenes/bullet.tscn" id="2_v5ih7"]
+[ext_resource type="Script" path="res://Scripts/grid.gd" id="4_40m2e"]
 [ext_resource type="PackedScene" uid="uid://bbqn7ajgj674x" path="res://Models/tower_blue.glb" id="4_t8k56"]
 [ext_resource type="PackedScene" uid="uid://bak2yl81i55qm" path="res://Scenes/3d_hp_bar.tscn" id="6_sx7rr"]
 [ext_resource type="PackedScene" uid="uid://dtvttuyo3hovo" path="res://Models/cannon_blue.glb" id="7_gqj83"]
 [ext_resource type="PackedScene" uid="uid://bcsevl85g0lj7" path="res://Models/cannon_red.glb" id="8_s601l"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="8_t5c65"]
 [ext_resource type="PackedScene" uid="uid://bomkcq5c67coa" path="res://Models/tower_red.glb" id="9_3s2x7"]
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="9_mpva0"]
+[ext_resource type="Texture2D" uid="uid://bxvsmhdbpr55j" path="res://Sprites/emote_icon.png" id="10_mrrhc"]
+[ext_resource type="Texture2D" uid="uid://wwt0u8all345" path="res://Sprites/knight.png" id="10_nsidf"]
+[ext_resource type="Texture2D" uid="uid://bfhjafetdu20w" path="res://Sprites/musketeer.png" id="11_x73h2"]
+[ext_resource type="Texture2D" uid="uid://ba1k7ssprn28l" path="res://Sprites/log.png" id="12_jc131"]
+[ext_resource type="Texture2D" uid="uid://ch4rpu6ea3fne" path="res://Sprites/minipekka.png" id="13_rbpub"]
+[ext_resource type="Texture2D" uid="uid://cddql8hrgt624" path="res://Sprites/royalgiant.png" id="14_yuojp"]
+[ext_resource type="Texture2D" uid="uid://bxcwwmci4ogtj" path="res://Sprites/dartgoblin.png" id="15_ojpfv"]
+[ext_resource type="Texture2D" uid="uid://dhoj2iu8hmvgb" path="res://Sprites/pekka.png" id="16_l0bt7"]
+[ext_resource type="Texture2D" uid="uid://b2ymmn2j2ca23" path="res://Sprites/dumb.png" id="17_nksuy"]
+[ext_resource type="Texture2D" uid="uid://diwoctxb5ir3v" path="res://Sprites/Heheheha/frame_00_delay-0.08s.png" id="19_e73ti"]
+[ext_resource type="Texture2D" uid="uid://co3w41ng8fa3s" path="res://Sprites/Heheheha/frame_01_delay-0.17s.png" id="20_rev8m"]
+[ext_resource type="Texture2D" uid="uid://dxs8dtcfsqbu7" path="res://Sprites/Heheheha/frame_02_delay-0.08s.png" id="21_1t0kt"]
+[ext_resource type="Texture2D" uid="uid://c14848ts20da8" path="res://Sprites/Heheheha/frame_03_delay-0.09s.png" id="22_wnfb5"]
+[ext_resource type="Texture2D" uid="uid://db1dvp36dlidg" path="res://Sprites/Heheheha/frame_04_delay-0.08s.png" id="23_q83r2"]
+[ext_resource type="Texture2D" uid="uid://ca03vlgc4bif5" path="res://Sprites/Heheheha/frame_05_delay-0.08s.png" id="24_256sg"]
+[ext_resource type="Texture2D" uid="uid://b6bgv5xujwmxs" path="res://Sprites/Heheheha/frame_06_delay-0.09s.png" id="25_nnuw4"]
+[ext_resource type="Texture2D" uid="uid://ui7ageiuno4c" path="res://Sprites/Heheheha/frame_07_delay-0.08s.png" id="26_ikatd"]
+[ext_resource type="Texture2D" uid="uid://db7r40mumjy3t" path="res://Sprites/Heheheha/frame_08_delay-0.08s.png" id="27_ir6tb"]
+[ext_resource type="Texture2D" uid="uid://cpr6ghovphfnd" path="res://Sprites/Heheheha/frame_09_delay-0.09s.png" id="28_2mslh"]
+[ext_resource type="Texture2D" uid="uid://m4oklcsd24ch" path="res://Sprites/Heheheha/frame_10_delay-0.08s.png" id="29_8258q"]
+[ext_resource type="Texture2D" uid="uid://di4ul7ye14cch" path="res://Sprites/Heheheha/frame_11_delay-0.08s.png" id="30_antre"]
+[ext_resource type="Texture2D" uid="uid://b27hh2tpbp3me" path="res://Sprites/Heheheha/frame_12_delay-0.09s.png" id="31_p5vba"]
+[ext_resource type="Texture2D" uid="uid://cw2kshq7cp3j8" path="res://Sprites/Heheheha/frame_13_delay-0.08s.png" id="32_blecd"]
+[ext_resource type="Texture2D" uid="uid://bktjrmyy2346p" path="res://Sprites/Heheheha/frame_14_delay-0.08s.png" id="33_oecln"]
+[ext_resource type="Texture2D" uid="uid://dpdw0prfn7oqt" path="res://Sprites/Heheheha/frame_15_delay-0.09s.png" id="34_kkf0a"]
+[ext_resource type="Texture2D" uid="uid://do6wwdd8n8et3" path="res://Sprites/Heheheha/frame_16_delay-0.08s.png" id="35_lnyvg"]
+[ext_resource type="Texture2D" uid="uid://p8176v1qt0uk" path="res://Sprites/Heheheha/frame_17_delay-0.08s.png" id="36_2dtwp"]
+[ext_resource type="Texture2D" uid="uid://c2gfwfx82irjl" path="res://Sprites/Heheheha/frame_18_delay-0.09s.png" id="37_awfwh"]
+[ext_resource type="Texture2D" uid="uid://bires6mf80rq6" path="res://Sprites/Heheheha/frame_19_delay-0.08s.png" id="38_dkgqu"]
+[ext_resource type="Texture2D" uid="uid://0pf8mdw5d54q" path="res://Sprites/Heheheha/frame_20_delay-0.08s.png" id="39_dbi87"]
+[ext_resource type="Texture2D" uid="uid://nbxalae8amj" path="res://Sprites/Heheheha/frame_21_delay-0.09s.png" id="40_lcn3b"]
+[ext_resource type="Texture2D" uid="uid://c6f3jl7e3ugn5" path="res://Sprites/Heheheha/frame_22_delay-0.08s.png" id="41_4nmwx"]
+[ext_resource type="Texture2D" uid="uid://cfd08dx8xcqok" path="res://Sprites/Heheheha/frame_23_delay-0.08s.png" id="42_wlckp"]
+[ext_resource type="Texture2D" uid="uid://c2sivurtdvyan" path="res://Sprites/Heheheha/frame_24_delay-0.09s.png" id="43_swyuk"]
+[ext_resource type="Texture2D" uid="uid://dsc8pguouq508" path="res://Sprites/Heheheha/frame_25_delay-0.09s.png" id="44_v24p5"]
+[ext_resource type="FontFile" uid="uid://dssukj517qdde" path="res://Fonts/You Blockhead.ttf" id="45_1fjjd"]
+[ext_resource type="AudioStream" uid="uid://dn4nwxeaaw60r" path="res://Sounds/knight_deploy.mp3" id="47_jyp68"]
+[ext_resource type="AudioStream" uid="uid://cvxnhxy3ujpig" path="res://Sounds/royalgiant_deploy.mp3" id="48_4pitp"]
+[ext_resource type="AudioStream" uid="uid://dufmu6prccoi5" path="res://Sounds/musk_deploy.mp3" id="48_88txk"]
+[ext_resource type="AudioStream" uid="uid://c2w0yxgtqclo2" path="res://Sounds/log_deploy.mp3" id="48_iy4y5"]
+[ext_resource type="AudioStream" uid="uid://7hy3akjc3g5k" path="res://Sounds/dartgoblin_deploy.mp3" id="48_wlojg"]
+[ext_resource type="AudioStream" uid="uid://8bthyt2fnnrk" path="res://Sounds/minipekka_deploy.mp3" id="49_7qems"]
+[ext_resource type="AudioStream" uid="uid://laer44g447ra" path="res://Sounds/musk_attack.mp3" id="49_v22da"]
+[ext_resource type="AudioStream" uid="uid://c7dnfdxdnnkei" path="res://Sounds/knight_attack1.mp3" id="50_uu323"]
+[ext_resource type="AudioStream" uid="uid://b70umqylgvdje" path="res://Sounds/knight_attack2.mp3" id="51_g5rf6"]
+[ext_resource type="AudioStream" uid="uid://cricmg6tbhjpy" path="res://Sounds/pekka_deploy.mp3" id="51_ji18b"]
+[ext_resource type="AudioStream" uid="uid://cjrrm4s2scnjl" path="res://Sounds/minipekka_attack.mp3" id="52_5wyh6"]
+[ext_resource type="AudioStream" uid="uid://cr230ttdtpfas" path="res://Sounds/dumb_deploy.mp3" id="52_7ibwp"]
+[ext_resource type="AudioStream" uid="uid://t3vvb0nyt6ka" path="res://Sounds/knight_attack3.mp3" id="52_ssmyl"]
+[ext_resource type="AudioStream" uid="uid://3m31uovji12e" path="res://Sounds/knight_attack4.mp3" id="53_6bgap"]
+[ext_resource type="AudioStream" uid="uid://tmyvtj7asa5w" path="res://Sounds/knight_attack5.mp3" id="54_fuow4"]
+[ext_resource type="AudioStream" uid="uid://dr3kxj2o7vda5" path="res://Sounds/dartgoblin_attack1.mp3" id="55_dxpy8"]
+[ext_resource type="AudioStream" uid="uid://cmv4wl8ycwdbg" path="res://Sounds/knight_death.mp3" id="55_ervve"]
+[ext_resource type="AudioStream" uid="uid://bvicss8dyiwy1" path="res://Sounds/pekka_attack1.mp3" id="55_ouv7w"]
+[ext_resource type="AudioStream" uid="uid://carms3keb6gm4" path="res://Sounds/musk_death.mp3" id="56_fc1cx"]
+[ext_resource type="AudioStream" uid="uid://dlyu521s6v7ul" path="res://Sounds/dartgoblin_attack2.mp3" id="56_kpmx0"]
+[ext_resource type="AudioStream" uid="uid://cxvi1ohhel0aj" path="res://Sounds/dumb_attack1.mp3" id="56_oc1c2"]
+[ext_resource type="AudioStream" uid="uid://vu50dgqrr5k6" path="res://Sounds/dumb_attack2.mp3" id="57_lfdkq"]
+[ext_resource type="AudioStream" uid="uid://clqn4w34lc4ca" path="res://Sounds/log_death.mp3" id="58_rqkv3"]
+[ext_resource type="AudioStream" uid="uid://boyo383iow2dx" path="res://Sounds/minipekka_death.mp3" id="59_3rcrh"]
+[ext_resource type="AudioStream" uid="uid://duu87ghea3um2" path="res://Sounds/royalgiant_attack1.mp3" id="59_rlqi5"]
+[ext_resource type="AudioStream" uid="uid://b381c7medbdtk" path="res://Sounds/royalgiant_attack2.mp3" id="60_5by4u"]
+[ext_resource type="AudioStream" uid="uid://bcro5nt1sjtc7" path="res://Sounds/royalgiant_attack3.mp3" id="61_tmmaf"]
+[ext_resource type="AudioStream" uid="uid://dck77wl1nc64" path="res://Sounds/royalgiant_death.mp3" id="64_j127b"]
+[ext_resource type="AudioStream" uid="uid://cg4x0kw8l88hp" path="res://Sounds/dartgoblin_death.mp3" id="66_itgfj"]
+[ext_resource type="AudioStream" uid="uid://b746m8eesbrcr" path="res://Sounds/pekka_death.mp3" id="67_6osg4"]
+[ext_resource type="AudioStream" uid="uid://b7s437mp867pc" path="res://Sounds/dumb_death.mp3" id="71_n2t7v"]
+[ext_resource type="AudioStream" uid="uid://b27bskeae125" path="res://Sounds/battle.mp3" id="78_xy6m4"]
+[ext_resource type="AudioStream" uid="uid://c5vtp0qcj6tn" path="res://Sounds/heheheha.mp3" id="79_t8m77"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpu6f"]
-albedo_color = Color(0.352763, 0.552752, 1, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t3wr3"]
+sky_top_color = Color(0.298039, 0.756863, 0.984314, 1)
+sky_horizon_color = Color(0.34902, 0.34902, 0.34902, 1)
+sky_curve = 13.114
+sky_energy_multiplier = 11.74
+ground_bottom_color = Color(0.705882, 0.639216, 0.560784, 1)
+sun_angle_max = 360.0
+sun_curve = 0.113679
+
+[sub_resource type="Sky" id="Sky_e0jha"]
+sky_material = SubResource("ProceduralSkyMaterial_t3wr3")
+
+[sub_resource type="Environment" id="Environment_p3nmr"]
+background_mode = 2
+sky = SubResource("Sky_e0jha")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_838g7"]
+size = Vector2(400, 400)
+subdivide_width = 400
+subdivide_depth = 400
+
+[sub_resource type="Shader" id="Shader_ixg03"]
+code = "shader_type spatial;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_nearest;
+
+uniform vec3 albedo : source_color = vec3(0.02, 0.45, 0.8);
+uniform float transparency : hint_range(0.0, 1.0, 0.01) = 0.4;
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.5;
+
+uniform vec2 surface_normals_move_direction_a = vec2(-1.0, 0.0);
+uniform vec2 surface_normals_move_direction_b = vec2(0.0, 1.0);
+uniform float surface_texture_roughness : hint_range(0.0, 1.0, 0.01) = 0.6;
+uniform float surface_texture_scale : hint_range(0.001, 2.0, 0.001) = 0.3;
+uniform float surface_texture_time_scale : hint_range(0.001, 2.0, 0.001) = 0.06;
+
+uniform float ssr_resolution   : hint_range(0.01, 10.0, 0.1)	= 2.0;
+uniform float ssr_max_travel   : hint_range(0.0, 200.0, 0.1) 	= 30.0;
+uniform float ssr_max_diff     : hint_range(0.1, 10.0, 0.1) 	= 4.0;
+uniform float ssr_mix_strength : hint_range(0.0, 1.0, 0.01) 	= 0.7;
+
+uniform float wave_noise_scale = 15.0;
+uniform float wave_height_scale = 0.25;
+uniform float wave_time_scale = 0.025;
+uniform float wave_normal_flatness : hint_range(0.1, 100.0, 0.1) = 30.0;
+
+uniform vec3  border_color : source_color = vec3(1.0);
+uniform float border_scale : hint_range(0.0, 5.0, 0.01) = 2.0;
+uniform float border_near = 0.5;
+uniform float border_far = 300.0;
+
+uniform float refraction_intensity : hint_range(0.0, 1.0, 0.01) = 0.4; 
+
+uniform float max_visible_depth : hint_range(0.0, 100.0, 0.1) = 10.0;
+uniform vec3 color_deep : source_color = vec3(0.0, 0.1, 0.4);
+
+uniform sampler2D wave_a;
+uniform sampler2D wave_b;
+
+uniform sampler2D surface_normals_a;
+uniform sampler2D surface_normals_b;
+
+varying vec2 vertex_uv; 
+
+float get_wave_height(vec2 uv)
+{
+	float height1 = texture(wave_a, uv).y;
+	float height2 = texture(wave_b, uv).y;
+	return (height1 + height2) / 2.0;
+}
+
+void vertex()
+{
+	vertex_uv = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
+	vec2 uv = vertex_uv / wave_noise_scale + TIME * wave_time_scale;
+	VERTEX.y += get_wave_height(uv) * wave_height_scale;
+	
+	float normal_height_scale = wave_height_scale / wave_normal_flatness;
+	vec2 e = vec2(0.01, 0.0);
+	vec3 normal = normalize(vec3(
+		get_wave_height(uv - e) * normal_height_scale - get_wave_height(uv + e) * normal_height_scale, 
+		2.0 * e.x, 
+		get_wave_height(uv - e.yx) * normal_height_scale - get_wave_height(uv + e.yx) * normal_height_scale
+		));
+	NORMAL = normal;
+}
+
+bool is_within_screen_boundaries(vec2 position) {
+	return position.x > 0.0 && position.x < 1.0 && position.y > 0.0 && position.y < 1.0;
+}
+
+vec2 get_uv_from_view_position(vec3 position_view_space, mat4 proj_m)
+{
+	vec4 position_clip_space = proj_m * vec4(position_view_space.xyz, 1.0);
+	vec2 position_ndc = position_clip_space.xy / position_clip_space.w;
+	return position_ndc.xy * 0.5 + 0.5;
+}
+
+vec3 get_view_position_from_uv(vec2 uv, float depth, mat4 inv_proj_m)
+{
+	vec4 position_ndc = vec4((uv * 2.0) - 1.0, depth, 1.0);
+	vec4 view_position = inv_proj_m * position_ndc;
+	return view_position.xyz /= view_position.w;
+}
+
+vec3 get_ssr_color(vec3 surface_view_position, vec3 normal_view_space, vec3 view_view_space, mat4 proj_m, mat4 inv_proj_m)
+{
+	vec3 current_position_view_space = surface_view_position;
+	vec3 view_direction_view_space = view_view_space * -1.0;
+	vec3 reflect_vector_view_space = normalize(reflect(view_direction_view_space.xyz, normal_view_space.xyz));
+	
+	vec2 current_screen_position = vec2(0.0);
+	
+	vec3 resulting_color = vec3(-1.0);
+	for(float travel=0.0; resulting_color.x < 0.0 && travel < ssr_max_travel; travel = travel + ssr_resolution)
+	{
+		current_position_view_space += reflect_vector_view_space * ssr_resolution;
+		current_screen_position = get_uv_from_view_position(current_position_view_space, proj_m);
+
+		float depth_texture_probe_raw = texture(DEPTH_TEXTURE, current_screen_position).x;
+		vec3 depth_texture_probe_view_position = get_view_position_from_uv(current_screen_position, depth_texture_probe_raw, inv_proj_m);
+		
+		float depth_diff = depth_texture_probe_view_position.z - current_position_view_space.z;
+		
+		resulting_color = (is_within_screen_boundaries(current_screen_position) && depth_diff >= 0.0 && depth_diff < ssr_max_diff) ? texture(SCREEN_TEXTURE, current_screen_position.xy).rgb : vec3(-1.0);
+	}
+	return resulting_color;
+}
+
+float border(float cur_depth)
+{
+	return border_near * border_far / (border_far + (2.0 * cur_depth - 1.0) * (border_near - border_far));
+}
+
+float normalize_float(float min_v, float max_v, float value) {
+	float clamped_value = clamp(value, min_v, max_v);
+	return  (clamped_value - min_v) / (max_v - min_v);
+}
+
+vec2 get_refracted_uv(vec2 raw_screen_uv, float screen_depth_raw, vec3 view, vec3 normal, mat4 proj_m, mat4 inv_proj_m)
+{
+		vec3 screen_view_position_original = get_view_position_from_uv(raw_screen_uv, screen_depth_raw, inv_proj_m);
+		float screen_center_distance = clamp(abs(length(raw_screen_uv - vec2(0.5, 0.5))) * 2.0, 0.0, 1.0);
+		float refraction_intensity_deglitched = mix(1.0 - refraction_intensity, 1.0, screen_center_distance);
+		vec3 refraction_position_view_space = screen_view_position_original + normalize(refract(view, -normal, refraction_intensity_deglitched));
+		vec2 refraction_uv = get_uv_from_view_position(refraction_position_view_space, proj_m);
+		return refraction_uv;
+}
+
+void fragment() {
+	float screen_depth_raw = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	
+	vec2 refraction_uv = refraction_intensity > 0.0 ? get_refracted_uv(SCREEN_UV, screen_depth_raw, VIEW, NORMAL, PROJECTION_MATRIX, INV_PROJECTION_MATRIX) : SCREEN_UV;
+	
+	float screen_depth = texture(DEPTH_TEXTURE, refraction_uv).x;
+	float surface_depth = FRAGCOORD.z;
+	
+	float border_diff = border(screen_depth_raw) - border(surface_depth);
+	
+	vec2 time_vector = (TIME * surface_normals_move_direction_a) * surface_texture_time_scale;
+	vec2 time_vector2 = (TIME * surface_normals_move_direction_b) * surface_texture_time_scale;
+	
+	vec3 normal_texture_blend 	= mix(texture(surface_normals_a, vertex_uv * surface_texture_scale + time_vector).xyz, texture(surface_normals_b, vertex_uv * surface_texture_scale + time_vector2).xyz, 0.5);
+	vec3 normal_blend 			= mix(NORMAL, normal_texture_blend, surface_texture_roughness);
+	
+	vec3 screen_view_position 	= get_view_position_from_uv(refraction_uv, screen_depth, INV_PROJECTION_MATRIX);
+	vec3 surface_view_position 	= get_view_position_from_uv(refraction_uv, surface_depth, INV_PROJECTION_MATRIX);
+	float depth_opacity = 1.0 - normalize_float(0.0, max_visible_depth, length(surface_view_position - screen_view_position));
+	
+	vec3 screen_color 				= texture(SCREEN_TEXTURE, refraction_uv).rgb;
+	vec3 surface_color 				= albedo;
+	vec3 ssr_color 					= get_ssr_color(surface_view_position, NORMAL, VIEW, PROJECTION_MATRIX, INV_PROJECTION_MATRIX);
+	vec3 color_with_transparency 	= mix(surface_color, screen_color, transparency);
+	vec3 depth_color 				= mix(color_deep.rgb, color_with_transparency, depth_opacity);
+	vec3 water_color 				= (ssr_color.x >= 0.0) ? mix(depth_color, ssr_color, ssr_mix_strength) : depth_color;
+	vec3 final_color				= mix(border_color, water_color, step(border_scale, border_diff));
+	
+	ALBEDO.rgb = final_color;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	NORMAL_MAP = normal_blend;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o2me1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bcpi7"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_o2me1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_apqfq"]
+noise_type = 0
+seed = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r4a3k"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_apqfq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ykxwc"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qdptp"]
+seamless = true
+noise = SubResource("FastNoiseLite_ykxwc")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dodjv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w84gw"]
+noise = SubResource("FastNoiseLite_dodjv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnqsk"]
+render_priority = 0
+shader = SubResource("Shader_ixg03")
+shader_parameter/albedo = Color(0.02, 0.45, 0.8, 1)
+shader_parameter/transparency = 0.4
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/surface_normals_move_direction_a = Vector2(-1, 0)
+shader_parameter/surface_normals_move_direction_b = Vector2(0, 1)
+shader_parameter/surface_texture_roughness = 0.6
+shader_parameter/surface_texture_scale = 0.3
+shader_parameter/surface_texture_time_scale = 0.06
+shader_parameter/ssr_resolution = 2.0
+shader_parameter/ssr_max_travel = 30.0
+shader_parameter/ssr_max_diff = 4.0
+shader_parameter/ssr_mix_strength = 0.7
+shader_parameter/wave_noise_scale = 15.0
+shader_parameter/wave_height_scale = 0.25
+shader_parameter/wave_time_scale = 0.025
+shader_parameter/wave_normal_flatness = 30.0
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/border_scale = 2.0
+shader_parameter/border_near = 0.5
+shader_parameter/border_far = 300.0
+shader_parameter/refraction_intensity = 0.4
+shader_parameter/max_visible_depth = 10.0
+shader_parameter/color_deep = Color(0, 0.1, 0.4, 1)
+shader_parameter/wave_a = SubResource("NoiseTexture2D_qdptp")
+shader_parameter/wave_b = SubResource("NoiseTexture2D_w84gw")
+shader_parameter/surface_normals_a = SubResource("NoiseTexture2D_bcpi7")
+shader_parameter/surface_normals_b = SubResource("NoiseTexture2D_r4a3k")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3xu0m"]
 vertices = PackedVector3Array(-9.75, 0.4, 9.24425, -9.75, 0.4, 18.4942, -9.53674e-07, 0.4, 18.4942, -9.53674e-07, 0.4, 18.4942, 9.75, 0.4, 18.4942, 9.75, 0.4, 9.24425, 9.75, 0.4, -9.25575, 9.75, 0.4, -18.5058, -9.53674e-07, 0.4, -18.5058, -9.53674e-07, 0.4, -18.5058, -9.75, 0.4, -18.5058, -9.75, 0.4, -9.25575, -9.75, 0.4, 9.24425, -9.53674e-07, 0.4, 18.4942, 9.75, 0.4, 9.24425, 9.75, 0.4, -0.00575066, -9.75, 0.4, -0.00575066, 9.75, 0.4, -9.25575, -9.53674e-07, 0.4, -18.5058, -9.75, 0.4, -9.25575, -9.75, 0.4, -0.00575066, 9.75, 0.4, -0.00575066)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(12, 16, 13), PackedInt32Array(13, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(17, 21, 18), PackedInt32Array(18, 21, 19), PackedInt32Array(19, 21, 20)]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1fxm"]
-albedo_color = Color(0, 1, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efkui"]
+albedo_color = Color(0, 0.807843, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf2tr"]
 albedo_color = Color(0.352763, 0.552752, 1, 1)
@@ -26,13 +342,99 @@ albedo_color = Color(0.352763, 0.552752, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2h1g"]
 size = Vector3(8, 15.285, 10)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7cip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_e73ti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rev8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1t0kt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_wnfb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_q83r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_256sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_nnuw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ikatd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ir6tb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_2mslh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_8258q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_antre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_p5vba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_blecd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_oecln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_kkf0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_lnyvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_2dtwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_awfwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_dkgqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_dbi87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_lcn3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_4nmwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_wlckp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_swyuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_v24p5")
+}],
+"loop": false,
+"name": &"heheheha",
+"speed": 15.0
+}]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_buf4o"]
 size = Vector3(9.67, 1, 19.86)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_33cnk"]
 size = Vector3(10.79, 1, 9.94)
 
-[node name="GAME" type="Node3D" node_paths=PackedStringArray("PRINCESS_RED_1", "PRINCESS_RED_2", "KING_RED", "PRINCESS_BLUE_1", "PRINCESS_BLUE_2", "KING_BLUE", "T_PRINCESS_RED_1", "T_PRINCESS_RED_2", "T_KING_RED", "T_PRINCESS_BLUE_1", "T_PRINCESS_BLUE_2", "T_KING_BLUE", "Button1", "Button2", "Button3", "Button4")]
+[node name="GAME" type="Node3D" node_paths=PackedStringArray("PRINCESS_RED_1", "PRINCESS_RED_2", "KING_RED", "PRINCESS_BLUE_1", "PRINCESS_BLUE_2", "KING_BLUE", "T_PRINCESS_RED_1", "T_PRINCESS_RED_2", "T_KING_RED", "T_PRINCESS_BLUE_1", "T_PRINCESS_BLUE_2", "T_KING_BLUE", "Button1", "Button2", "Button3", "Button4", "Button5", "Button6", "Button7", "Button8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("1_mehdx")
 PRINCESS_RED_1 = NodePath("Troops/princess_red_1")
@@ -52,6 +454,13 @@ Button1 = NodePath("CanvasLayer/Control/Button")
 Button2 = NodePath("CanvasLayer/Control/Button2")
 Button3 = NodePath("CanvasLayer/Control/Button3")
 Button4 = NodePath("CanvasLayer/Control/Button4")
+Button5 = NodePath("CanvasLayer/Control/Button5")
+Button6 = NodePath("CanvasLayer/Control/Button6")
+Button7 = NodePath("CanvasLayer/Control/Button7")
+Button8 = NodePath("CanvasLayer/Control/Button8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p3nmr")
 
 [node name="Bridge" type="Node3D" parent="."]
 
@@ -61,24 +470,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, 2)
 [node name="bridge2" parent="Bridge" instance=ExtResource("2_cmccf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -1, 2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1.2, -0.2, -1, 0.1)
-size = Vector3(28.78, 1, 66.215)
-material = SubResource("StandardMaterial3D_tpu6f")
+[node name="WaterSurface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027, -0.367, -0.037)
+mesh = SubResource("PlaneMesh_838g7")
+surface_material_override/0 = SubResource("ShaderMaterial_wnqsk")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 1.1)
 navigation_mesh = SubResource("NavigationMesh_3xu0m")
 metadata/_edit_lock_ = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 1.11)
 use_collision = true
 size = Vector3(20.235, 0.135, 42.235)
-material = SubResource("StandardMaterial3D_g1fxm")
+material = SubResource("StandardMaterial3D_efkui")
+script = ExtResource("4_40m2e")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(20.5, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(20.5, 0, 0, 0, 0.2, 0, 0, 0, 1, -0.22, 0.645, 1)
+size = Vector3(0.96, 1, 1)
 material = SubResource("StandardMaterial3D_kf2tr")
 
 [node name="Towers" type="Node3D" parent="."]
@@ -179,14 +589,11 @@ shape = SubResource("BoxShape3D_s2h1g")
 [node name="Timer" type="Timer" parent="Towers/king_red"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
+process_priority = 1
+process_physics_priority = 1
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 34.2503, 3.5)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.985843, 0.0967881, -0.136917, -0.0276133, 0.89914, 0.436789, 0.165383, -0.426824, 0.889083, -0.687316, 17.1166, 3.99946)
-light_energy = 1.3
-shadow_enabled = true
-shadow_opacity = 0.14
-sky_mode = 1
+script = ExtResource("8_t5c65")
+sensitivity = 0.524
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -197,6 +604,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 18.0
 offset_top = 824.0
@@ -205,28 +613,138 @@ offset_bottom = 931.0
 text = "RoyalGiant"
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 134.0
 offset_top = 824.0
 offset_right = 238.0
 offset_bottom = 931.0
-text = "Musk"
+text = "DartGoblin"
 
 [node name="Button3" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 250.0
 offset_top = 824.0
 offset_right = 354.0
 offset_bottom = 931.0
-text = "Log"
+text = "Pekka"
 
 [node name="Button4" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 363.0
 offset_top = 824.0
 offset_right = 467.0
 offset_bottom = 931.0
+text = "Dumb"
+
+[node name="Button5" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 694.0
+offset_right = 123.0
+offset_bottom = 801.0
+text = "Knight"
+
+[node name="Button6" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 135.0
+offset_top = 694.0
+offset_right = 239.0
+offset_bottom = 801.0
+text = "Musk"
+
+[node name="Button7" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 251.0
+offset_top = 694.0
+offset_right = 355.0
+offset_bottom = 801.0
+text = "Log"
+
+[node name="Button8" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 364.0
+offset_top = 694.0
+offset_right = 468.0
+offset_bottom = 801.0
 text = "MiniPekka"
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(73.115, 744.935)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("10_nsidf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(189, 745)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("11_x73h2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(304, 745)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("12_jc131")
+
+[node name="Sprite2D5" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(418, 745)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("13_rbpub")
+
+[node name="Sprite2D6" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(73, 879)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("14_yuojp")
+
+[node name="Sprite2D7" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(189, 879)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("15_ojpfv")
+
+[node name="Sprite2D8" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(305, 879)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("16_l0bt7")
+
+[node name="Sprite2D9" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(416, 879)
+scale = Vector2(0.295, 0.295)
+texture = ExtResource("17_nksuy")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(66, 633)
+scale = Vector2(0.105, 0.105)
+texture = ExtResource("10_mrrhc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(213, 652)
+sprite_frames = SubResource("SpriteFrames_k7cip")
+animation = &"heheheha"
+frame = 25
+frame_progress = 1.0
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 25.0
+offset_top = 659.0
+offset_right = 33.0
+offset_bottom = 667.0
+scale = Vector2(10.1461, -6.91732)
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 45
+theme_override_fonts/font = ExtResource("45_1fjjd")
+theme_override_font_sizes/font_size = 131
+text = "FPS: 34"
 
 [node name="Troops" type="Node3D" parent="."]
 
@@ -314,6 +832,120 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
 
 [node name="SpawnedCards" type="Node3D" parent="."]
 
+[node name="Cells" type="Node3D" parent="."]
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="Deploy" type="Node3D" parent="SFX"]
+process_mode = 1
+
+[node name="Knight" type="AudioStreamPlayer" parent="SFX/Deploy"]
+process_mode = 1
+stream = ExtResource("47_jyp68")
+
+[node name="DartGoblin" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("48_wlojg")
+
+[node name="RoyalGiant" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("48_4pitp")
+
+[node name="Log" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("48_iy4y5")
+
+[node name="Pekka" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("51_ji18b")
+
+[node name="Dumb" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("52_7ibwp")
+
+[node name="MiniPekka" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("49_7qems")
+
+[node name="Musk" type="AudioStreamPlayer" parent="SFX/Deploy"]
+stream = ExtResource("48_88txk")
+
+[node name="Attack" type="Node3D" parent="SFX"]
+
+[node name="Musk_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("49_v22da")
+
+[node name="Dumb_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("56_oc1c2")
+
+[node name="Dumb_2" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("57_lfdkq")
+
+[node name="MiniPekka_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("52_5wyh6")
+
+[node name="Pekka_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("55_ouv7w")
+
+[node name="DartGoblin_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("55_dxpy8")
+
+[node name="DartGoblin_2" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("56_kpmx0")
+
+[node name="Knight_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("50_uu323")
+
+[node name="Knight_2" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("51_g5rf6")
+
+[node name="Knight_3" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("52_ssmyl")
+
+[node name="Knight_4" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("53_6bgap")
+
+[node name="Knight_5" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("54_fuow4")
+
+[node name="RoyalGiant_1" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("59_rlqi5")
+
+[node name="RoyalGiant_2" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("60_5by4u")
+
+[node name="RoyalGiant_3" type="AudioStreamPlayer" parent="SFX/Attack"]
+stream = ExtResource("61_tmmaf")
+
+[node name="Death" type="Node3D" parent="SFX"]
+
+[node name="Knight" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("55_ervve")
+
+[node name="Dumb" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("71_n2t7v")
+
+[node name="Pekka" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("67_6osg4")
+
+[node name="DartGoblin" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("66_itgfj")
+
+[node name="MiniPekka" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("59_3rcrh")
+
+[node name="RoyalGiant" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("64_j127b")
+
+[node name="Musk" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("56_fc1cx")
+
+[node name="Log" type="AudioStreamPlayer" parent="SFX/Death"]
+stream = ExtResource("58_rqkv3")
+
+[node name="Misc" type="Node3D" parent="SFX"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFX/Misc"]
+stream = ExtResource("78_xy6m4")
+autoplay = true
+
+[node name="Heheheha" type="AudioStreamPlayer" parent="SFX/Misc"]
+stream = ExtResource("79_t8m77")
+
 [connection signal="body_entered" from="Towers/princess_blue_1/Area3D" to="." method="_on_tower_body_entered_princess_blue_1"]
 [connection signal="body_entered" from="Towers/princess_blue_2/Area3D" to="." method="_on_tower_body_entered_princess_blue_2"]
 [connection signal="body_entered" from="Towers/king_blue/Area3D" to="." method="_on_tower_body_entered_king_blue"]
@@ -324,6 +956,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button8" to="." method="_on_button_8_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_emote"]
 [connection signal="body_entered" from="Areas/princess_red_1" to="." method="_on_princess_red_1_body_entered"]
 [connection signal="body_exited" from="Areas/princess_red_1" to="." method="_on_princess_red_1_body_exited"]
 [connection signal="body_entered" from="Areas/princess_red_2" to="." method="_on_princess_red_2_body_entered"]
@@ -336,3 +973,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
 [connection signal="body_exited" from="Areas/princess_blue_2" to="." method="_on_princess_blue_2_body_exited"]
 [connection signal="body_entered" from="Areas/king_blue" to="." method="_on_king_blue_body_entered"]
 [connection signal="body_exited" from="Areas/king_blue" to="." method="_on_king_blue_body_exited"]
+[connection signal="finished" from="SFX/Misc/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

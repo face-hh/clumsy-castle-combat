@@ -27,6 +27,10 @@ extends Node3D
 @export var Button2: Button
 @export var Button3: Button
 @export var Button4: Button
+@export var Button5: Button
+@export var Button6: Button
+@export var Button7: Button
+@export var Button8: Button
 
 var active_towers: Array = []
 
@@ -36,11 +40,12 @@ var busy_characters: Array[Character] = []
 signal interaction_finished
 
 func _ready() -> void:
-	spawn_card("Musk", "red", Vector3(0, 3, -7))
-	spawn_card("Log", "red", Vector3(2, 3, -7))
-	spawn_card("Knight", "red", Vector3(4, 3, -7))
-	spawn_card("MiniPekka", "red", Vector3(6, 3, -7))
+	(Data as DataType).reload_audio()
+
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("spawn"):
+		spawn_random_troop()
+
 	for tower: Array in active_towers:
 		if !is_instance_valid(tower[1]):
 			return
@@ -97,7 +102,7 @@ func start_shoot(target: Node3D, node: Tower) -> void:
 		return
 	if ("red" in target.name and "red" in node.name) or ("blue" in target.name and "blue" in node.name) or not ("enemy" in target.name) or (target as Character).res.type == DataType.TYPES.SPELL:
 		return
-	print(node)
+
 	var connections: int = node.timer.get_signal_connection_list("timeout").size()
 	if connections > 0:
 		active_towers.append([node, target])
@@ -151,8 +156,6 @@ func spawn_card(card_name: String, side: String = "blue", spawn_position: Vector
 	card_scene.timer.wait_time = card.hitspeed
 	card_scene.markers = $Markers
 
-
-
 func start_card_shoot(body: Node3D, target: Object) -> void:
 	if body is Character:
 		var body_char: Character = body as Character
@@ -188,6 +191,8 @@ func card_deal_damage(body: Character, target: Object) -> void:
 
 	if !spell:
 		body.attack() # plays anim
+	if !is_instance_valid(target):
+		return
 
 	if ((target as Tower).health if target is Tower else (target as Character).health) <= 0:
 		active_towers = []
@@ -284,6 +289,17 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
 	button_pressed(Button4)
 
+func _on_button_5_pressed() -> void:
+	button_pressed(Button5)
+
+func _on_button_6_pressed() -> void:
+	button_pressed(Button6)
+
+func _on_button_7_pressed() -> void:
+	button_pressed(Button7)
+
+func _on_button_8_pressed() -> void:
+	button_pressed(Button8)
 
 func _on_tower_body_entered_princess_red_1(body: Node3D) -> void:
 	start_card_shoot(body as Character, T_PRINCESS_RED_1)
@@ -307,3 +323,24 @@ func _on_tower_body_entered_king_blue(body: Node3D) -> void:
 
 func _on_tower_body_entered_king_red(body: Node3D) -> void:
 	start_card_shoot(body as Character, T_KING_RED)
+
+
+func spawn_random_troop() -> void:
+	var card: CardType = Data.cards.pick_random()
+	var spawns: Array[Vector3] = [
+		Vector3(-8, 2, -2.4),
+		Vector3(-2, 2, -11.40),
+		Vector3(8, 2, -11.40),
+	]
+	var spawn: Vector3 = spawns.pick_random()
+	spawn_card(card.card_name, "red", spawn)
+
+
+
+func _on_emote() -> void:
+	($CanvasLayer/AnimatedSprite2D as AnimatedSprite2D).play("heheheha")
+	($SFX/Misc/Heheheha as AudioStreamPlayer).play()
+
+
+func _on_audio_stream_player_finished() -> void:
+	($SFX/Misc/AudioStreamPlayer as AudioStreamPlayer).play()

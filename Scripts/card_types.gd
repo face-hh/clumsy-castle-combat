@@ -20,6 +20,14 @@ var transport: String
 var rarity: DataType.RARITIES
 var type: DataType.TYPES
 
+var audio_deploy: Array[AudioStreamPlayer]
+var audio_attack: Array[AudioStreamPlayer]
+var audio_death: Array[AudioStreamPlayer]
+
+var t_audio_deploy: Array[int]
+var t_audio_attack: Array[int]
+var t_audio_death: Array[int]
+
 var scene: PackedScene
 
 # Dynamic
